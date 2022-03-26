@@ -1,4 +1,4 @@
-package com.nkzly.accountapi.model;
+package com.nkzly.accountapi.model.swaggerModel;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;

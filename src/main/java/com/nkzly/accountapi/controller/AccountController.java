@@ -1,8 +1,8 @@
 package com.nkzly.accountapi.controller;
 
-import com.nkzly.accountapi.model.AccountRequest;
-import com.nkzly.accountapi.model.AccountResponse;
-import com.nkzly.accountapi.model.CustomerResponse;
+import com.nkzly.accountapi.model.swaggerModel.AccountRequest;
+import com.nkzly.accountapi.model.swaggerModel.AccountResponse;
+import com.nkzly.accountapi.model.swaggerModel.AccountTransactionDetailResponse;
 import com.nkzly.accountapi.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class AccountController {
     }
 
     @GetMapping("/{customerID}")
-    public ResponseEntity<AccountResponse> getCustomerByCustomerNumber(@PathVariable Integer customerNumber){
-        return ResponseEntity.ok(accountService.getCustomerAccountInfo(customerNumber));
+    public ResponseEntity<AccountTransactionDetailResponse> getCustomerByCustomerNumber(@PathVariable Integer customerID){
+        return ResponseEntity.ok(accountService.getCustomerAccountInfo(customerID));
     }
 }

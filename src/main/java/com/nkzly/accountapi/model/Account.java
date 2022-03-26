@@ -1,41 +1,44 @@
 package com.nkzly.accountapi.model;
 
 
+import org.apache.commons.lang3.builder.EqualsExclude;
+import org.apache.commons.lang3.builder.HashCodeExclude;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 @Entity
 @Table
 public final class Account {
+
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     @Column
-    @GeneratedValue(
-            generator = "UUID"
-    )
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private String id;
+    private Integer id;
     @Column
-    private final BigDecimal balance;
+    private BigDecimal balance;
     @Column
-    private final LocalDateTime creationDate;
+    private LocalDateTime creationDate;
+
     @Column
-    private final boolean defaultAccount;
+    private boolean defaultAccount;
     @ManyToOne
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
     @OneToMany(mappedBy="account")
+    @EqualsExclude
+    @HashCodeExclude
+    @ToStringExclude
     private Set<Transaction> transactions;
+
+    public Account() {
+    }
 
     public Account(Customer customer, BigDecimal initialCredit, LocalDateTime now) {
         this.balance = initialCredit;
@@ -52,7 +55,7 @@ public final class Account {
         this.customer = customer;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -77,5 +80,8 @@ public final class Account {
 
     public boolean isDefaultAccount() {
         return defaultAccount;
+    }
+    public void setDefaultAccount(boolean defaultAccount) {
+        this.defaultAccount = defaultAccount;
     }
 }

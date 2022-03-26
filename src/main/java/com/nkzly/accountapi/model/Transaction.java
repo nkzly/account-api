@@ -19,12 +19,9 @@ public class Transaction {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Nullable
     private String id;
-    @Nullable
-    private final BigDecimal amount;
-    @Nullable
-    private final LocalDateTime transactionDate;
+    private BigDecimal amount;
+    private LocalDateTime transactionDate;
     @ManyToOne
     @JoinColumn(
             name = "account_id",
@@ -39,7 +36,9 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
 
-    @Nullable
+    public Transaction() {
+    }
+
     public String getId() {
         return id;
     }

@@ -1,5 +1,7 @@
-package com.nkzly.accountapi.model;
+package com.nkzly.accountapi.converter;
 
+import com.nkzly.accountapi.model.Customer;
+import com.nkzly.accountapi.model.swaggerModel.CustomerResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 public class CustomerResponseConverter {
 
     AccountResponseConverter accountResponseConverter = new AccountResponseConverter();
+
     public CustomerResponse convert(Customer customer) {
         CustomerResponse resp = new CustomerResponse();
         resp.setCustomerNumber(customer.getId());

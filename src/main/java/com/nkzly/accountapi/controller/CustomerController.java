@@ -1,6 +1,6 @@
 package com.nkzly.accountapi.controller;
 
-import com.nkzly.accountapi.model.CustomerResponse;
+import com.nkzly.accountapi.model.swaggerModel.CustomerResponse;
 import com.nkzly.accountapi.service.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerID}")
-    public ResponseEntity<CustomerResponse> getCustomerByCustomerNumber(@PathVariable Integer customerNumber){
-        return ResponseEntity.ok(customerService.getCustomerByCustomerNumber(customerNumber));
+    public ResponseEntity<CustomerResponse> getCustomerByCustomerNumber(@PathVariable Integer customerID){
+        return ResponseEntity.ok(customerService.getCustomerByCustomerNumber(customerID));
     }
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> getCustomers() {

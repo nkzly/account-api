@@ -1,10 +1,11 @@
 package com.nkzly.accountapi.service;
 
-import com.nkzly.accountapi.model.AccountRequest;
-import com.nkzly.accountapi.model.AccountResponse;
+import com.nkzly.accountapi.model.swaggerModel.AccountRequest;
+import com.nkzly.accountapi.model.swaggerModel.AccountResponse;
+import com.nkzly.accountapi.model.swaggerModel.AccountTransactionDetailResponse;
 
 public interface AccountService {
     String createAccount(AccountRequest request);
 
-    AccountResponse getCustomerAccountInfo(Integer customerNumber);
+    AccountTransactionDetailResponse getCustomerAccountInfo(Integer customerNumber);
 }

@@ -1,6 +1,6 @@
 package com.nkzly.accountapi.service;
 
-import com.nkzly.accountapi.model.CustomerResponse;
+import com.nkzly.accountapi.model.swaggerModel.CustomerResponse;
 
 import java.util.List;
 

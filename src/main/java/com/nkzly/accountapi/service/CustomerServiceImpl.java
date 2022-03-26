@@ -1,8 +1,8 @@
 package com.nkzly.accountapi.service;
 
 import com.nkzly.accountapi.model.Customer;
-import com.nkzly.accountapi.model.CustomerResponse;
-import com.nkzly.accountapi.model.CustomerResponseConverter;
+import com.nkzly.accountapi.model.swaggerModel.CustomerResponse;
+import com.nkzly.accountapi.converter.CustomerResponseConverter;
 import com.nkzly.accountapi.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
