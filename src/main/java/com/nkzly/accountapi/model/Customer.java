@@ -2,11 +2,14 @@ package com.nkzly.accountapi.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
 public class Customer {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -14,11 +17,20 @@ public class Customer {
     private String id;
     private String name;
     private String surname;
-    private final Set accounts;
+    @OneToMany(mappedBy="customer")
+    private Set<Account> accounts;
 
-    public Customer(String id, Set accounts) {
-        this.id = id;
-        this.accounts = accounts;
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public Customer() {
+    }
+
+    public Customer(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+
     }
 
     @Override

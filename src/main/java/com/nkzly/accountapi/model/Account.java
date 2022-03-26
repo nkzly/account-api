@@ -7,12 +7,12 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
-
+@Table
 public final class Account {
     @Id
+    @Column
     @GeneratedValue(
             generator = "UUID"
     )
@@ -21,31 +21,45 @@ public final class Account {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     private final String id;
-    @Nullable
+    @Column
     private final BigDecimal balance;
-
+    @Column
     private final LocalDateTime creationDate;
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.ALL}
-    )
-    @JoinColumn(
-            name = "customer_id",
-            nullable = false
-    )
-    private final Customer customer;
-    @OneToMany(
-            mappedBy = "account",
-            fetch = FetchType.EAGER,
-            cascade = {CascadeType.ALL}
-    )
-    private final Set transaction;
+    @Column
+    private final boolean defaultAccount;
+    @ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
+    private Customer customer;
 
-    public Account(String id, @Nullable BigDecimal balance, LocalDateTime creationDate, Customer customer, Set transaction) {
+    public Account(String id, @Nullable BigDecimal balance, LocalDateTime creationDate, boolean defaultAccount, Customer customer) {
         this.id = id;
         this.balance = balance;
         this.creationDate = creationDate;
+        this.defaultAccount = defaultAccount;
         this.customer = customer;
-        this.transaction = transaction;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public boolean isDefaultAccount() {
+        return defaultAccount;
     }
 }
