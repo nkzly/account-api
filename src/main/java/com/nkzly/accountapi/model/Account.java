@@ -2,11 +2,14 @@ package com.nkzly.accountapi.model;
 
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Supplier;
 
 @Entity
 @Table
@@ -20,7 +23,7 @@ public final class Account {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    private final String id;
+    private String id;
     @Column
     private final BigDecimal balance;
     @Column
@@ -31,11 +34,13 @@ public final class Account {
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
-    public Account(String id, @Nullable BigDecimal balance, LocalDateTime creationDate, boolean defaultAccount, Customer customer) {
-        this.id = id;
-        this.balance = balance;
-        this.creationDate = creationDate;
-        this.defaultAccount = defaultAccount;
+    @OneToMany(mappedBy="account")
+    private Set<Transaction> transactions;
+
+    public Account(Customer customer, BigDecimal initialCredit, LocalDateTime now) {
+        this.balance = initialCredit;
+        this.creationDate = now;
+        this.defaultAccount = true;
         this.customer = customer;
     }
 
@@ -57,6 +62,17 @@ public final class Account {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public Set<Transaction> getTransactions() {
+        if(transactions == null) {
+            transactions= new HashSet<>();
+        }
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public boolean isDefaultAccount() {

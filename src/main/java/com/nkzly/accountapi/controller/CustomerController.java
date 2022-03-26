@@ -19,9 +19,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable String customerId){
-        return ResponseEntity.ok(customerService.getCustomerById(customerId));
+    @GetMapping("/{customerID}")
+    public ResponseEntity<CustomerResponse> getCustomerByCustomerNumber(@PathVariable Integer customerNumber){
+        return ResponseEntity.ok(customerService.getCustomerByCustomerNumber(customerNumber));
     }
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> getCustomers() {

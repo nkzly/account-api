@@ -3,17 +3,17 @@ package com.nkzly.accountapi.model;
 import java.util.Set;
 
 public class CustomerResponse {
-    private String id;
+    private Integer customerNumber;
     private String name;
     private String surname;
     private Set<AccountResponse> accounts;
 
-    public String getId() {
-        return id;
+    public Integer getCustomerNumber() {
+        return customerNumber;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCustomerNumber(Integer customerNumber) {
+        this.customerNumber = customerNumber;
     }
 
     public String getName() {

@@ -10,7 +10,7 @@ public class CustomerResponseConverter {
     AccountResponseConverter accountResponseConverter = new AccountResponseConverter();
     public CustomerResponse convert(Customer customer) {
         CustomerResponse resp = new CustomerResponse();
-        resp.setId(customer.getId());
+        resp.setCustomerNumber(customer.getId());
         resp.setName(customer.getName());
         resp.setSurname(customer.getSurname());
         resp.setAccounts(customer.getAccounts().stream().map(accountResponseConverter::convert).collect(Collectors.toSet()));

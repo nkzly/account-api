@@ -20,10 +20,10 @@ public class CustomerServiceImpl implements  CustomerService {
     }
 
     @Override
-    public CustomerResponse getCustomerById(String customerId) {
-        return converter.convert(findCustomerById(customerId));
+    public CustomerResponse getCustomerByCustomerNumber(Integer customerNumber) {
+        return converter.convert(findCustomerById(customerNumber));
     }
-    protected Customer findCustomerById(String id) {
+    protected Customer findCustomerById(Integer id) {
         return customerRepository.findById(id)
                 .orElseThrow(
                         () -> new IllegalStateException("Customer could not find by id: " + id));

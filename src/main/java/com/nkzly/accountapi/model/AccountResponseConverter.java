@@ -12,7 +12,6 @@ public class AccountResponseConverter {
     public AccountResponse convert(Account from) {
         return new AccountResponse(from.getId(),
                 from.getBalance(),
-                from.getCreationDate(),
                 from.getCustomer().getId());
     }
 }

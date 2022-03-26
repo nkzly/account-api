@@ -6,14 +6,16 @@ import java.time.LocalDateTime;
 public class AccountResponse {
 
     private String id;
+    private String name;
+    private String surname;
     private BigDecimal balance;
-    private LocalDateTime creationDate;
-    private String customerId;
+    private TransactionResponse transactions;
+    private Integer customerId;
+    private String result;
 
-    public AccountResponse(String id, BigDecimal balance, LocalDateTime creationDate, String customerId) {
+    public AccountResponse(String id, BigDecimal balance, Integer customerId) {
         this.id = id;
         this.balance = balance;
-        this.creationDate = creationDate;
         this.customerId = customerId;
     }
 
@@ -33,19 +35,20 @@ public class AccountResponse {
         this.balance = balance;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public String getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

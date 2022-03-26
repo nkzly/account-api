@@ -2,25 +2,25 @@ package com.nkzly.accountapi.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    private Integer id;
     private String name;
     private String surname;
     @OneToMany(mappedBy="customer")
     private Set<Account> accounts;
 
     public Set<Account> getAccounts() {
+        if(accounts == null) {
+            accounts= new HashSet<>();
+        }
         return accounts;
     }
 
@@ -46,11 +46,11 @@ public class Customer {
         return Objects.hash(id, name, surname);
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
