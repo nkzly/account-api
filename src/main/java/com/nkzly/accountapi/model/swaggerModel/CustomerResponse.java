@@ -1,4 +1,4 @@
-package com.nkzly.accountapi.model;
+package com.nkzly.accountapi.model.swaggerModel;
 
 import java.util.Set;
 
