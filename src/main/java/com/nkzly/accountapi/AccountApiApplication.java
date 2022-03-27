@@ -1,18 +1,16 @@
 package com.nkzly.accountapi;
 
-import com.nkzly.accountapi.model.Customer;
 import com.nkzly.accountapi.repository.CustomerRepository;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class AccountApiApplication implements CommandLineRunner {
+public class AccountApiApplication {
     private final CustomerRepository customerRepository;
 
     public AccountApiApplication(CustomerRepository customerRepository) {
@@ -23,16 +21,6 @@ public class AccountApiApplication implements CommandLineRunner {
         SpringApplication.run(AccountApiApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) {
-        Customer customer = customerRepository.save(new Customer("Nihat", "Kzly"));
-        Customer customer2 = customerRepository.save(new Customer("Duman", "Kzly"));
-
-        System.out.println(customer);
-        System.out.println(customer2);
-
-    }
-
     @Bean
     public OpenAPI customOpenAPI(@Value("${application-description}") String description,
                                  @Value("${application-version}") String version) {
@@ -41,7 +29,7 @@ public class AccountApiApplication implements CommandLineRunner {
                         .title("Account API")
                         .version(version)
                         .description(description)
-                        .license(new License().name("Account API Licence")));
+                        .license(new License().name("Nkzly API Licence")));
     }
 
 }

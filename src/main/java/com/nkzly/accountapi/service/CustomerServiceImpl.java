@@ -4,6 +4,7 @@ import com.nkzly.accountapi.model.Customer;
 import com.nkzly.accountapi.model.swaggerModel.CustomerResponse;
 import com.nkzly.accountapi.converter.CustomerResponseConverter;
 import com.nkzly.accountapi.repository.CustomerRepository;
+import com.nkzly.accountapi.utility.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements  CustomerService {
     protected Customer findCustomerById(Integer id) {
         return customerRepository.findById(id)
                 .orElseThrow(
-                        () -> new IllegalStateException("Customer could not find by id: " + id));
+                        () -> new NotFoundException("Customer could not find by id: " + id));
 
     }
 

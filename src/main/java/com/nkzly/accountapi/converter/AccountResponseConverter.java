@@ -9,7 +9,6 @@ import com.nkzly.accountapi.model.swaggerModel.TransactionResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +16,9 @@ import java.util.Set;
 public class AccountResponseConverter {
 
     public AccountResponse convert(Account from) {
-
+        if(from == null) {
+            return null;
+        }
         AccountResponse response = new AccountResponse(
                 from.getId(),
                 from.getBalance(),
@@ -26,6 +27,9 @@ public class AccountResponseConverter {
         return response;
     }
     public AccountTransactionDetailResponse convert(Customer from) {
+        if(from == null) {
+            return null;
+        }
         AccountTransactionDetailResponse response = new AccountTransactionDetailResponse(
                 from.getId(),
                 from.getName(),

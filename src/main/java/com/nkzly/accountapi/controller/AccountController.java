@@ -1,7 +1,6 @@
 package com.nkzly.accountapi.controller;
 
 import com.nkzly.accountapi.model.swaggerModel.AccountRequest;
-import com.nkzly.accountapi.model.swaggerModel.AccountResponse;
 import com.nkzly.accountapi.model.swaggerModel.AccountTransactionDetailResponse;
 import com.nkzly.accountapi.service.AccountService;
 import org.springframework.http.ResponseEntity;
