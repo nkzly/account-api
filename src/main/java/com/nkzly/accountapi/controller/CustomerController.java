@@ -20,8 +20,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerID}")
-    public ResponseEntity<CustomerResponse> getCustomerByCustomerNumber(@PathVariable Integer customerID){
-        return ResponseEntity.ok(customerService.getCustomerByCustomerNumber(customerID));
+    public ResponseEntity<CustomerResponse> getCustomerByCustomerNumber(@PathVariable Integer customerNumber){
+        return ResponseEntity.ok(customerService.getCustomerByCustomerNumber(customerNumber));
     }
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> getCustomers() {

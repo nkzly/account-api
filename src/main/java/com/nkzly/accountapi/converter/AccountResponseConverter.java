@@ -22,6 +22,7 @@ public class AccountResponseConverter {
         AccountResponse response = new AccountResponse(
                 from.getId(),
                 from.getBalance(),
+                from.getCreationDate(),
                 convertTrx(from.getTransactions()));
 
         return response;
